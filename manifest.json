@@ -1,0 +1,62 @@
+{
+  // 清单文件版本
+  "manifest_version": 2,
+  // 插件名称
+  "name": "img-listener",
+  //插件的版本
+  "version": "1.0.0",
+  //插件描述
+  "description": "检测图片的链接，判断链接是否满足某个条件",
+  // 图标
+  "icons": {
+    "16": "images/wolf_16.png",
+    "48": "images/wolf_48.png",
+    "128": "images/wolf_128.png"
+  },
+  //常驻后台的js或后台页面
+  "background": {
+    "scripts": ["js/background.js"]
+  },
+  // 浏览器右上角图标设置
+  "browser_action": {
+    "default_icon": "images/wolf_48.png",
+    "default_title": "图片监听插件",
+    "default_popup": "html/popup.html"
+  },
+  // 需要直接注入页面的js
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["js/content-script.js"],
+      "css": ["css/content-script.css"],
+      "run_at": "document_start"
+    }
+  ],
+  // 权限申请
+  "permissions": [
+    "contextMenus", // 右键菜单
+    "tabs", // 标签
+    "notifications", // 通知
+    "webRequest", // web请求
+    "webRequestBlocking",
+    "storage", // 插件本地存储
+    "http://*/*", // 可以通过executeScript或者insertCSS访问的网站
+    "https://*/*" // 可以通过executeScript或者insertCSS访问的网站 
+  ],
+  // 普通页面能够直接访问的插件资源列表，如果不设置是无法直接访问的
+  "web_accessible_resources": ["js/inject.js"],
+  // 插件主页，这个很重要，不要浪费了这个免费广告位
+  "homepage_url": "https://www.baidu.com",
+  // Chrome40以前的插件配置页写法
+  "options_page": "html/options.html",
+  // Chrome40以后的插件配置页写法，如果2个都写，新版Chrome只认后面这一个
+  "options_ui":
+  {
+      "page": "html/options.html"
+  },
+  // 默认语言
+  // "default_locale": "zh_CN",
+  // devtools页面入口，注意只能指向一个HTML文件，不能是JS文件
+  "devtools_page": "html/devtools.html"
+
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    * {
+      font-size: 16px;
+    }
+    th {
+      padding: 10px 0;
+    }
+    .config-table {
+      width: 200px;
+      font-size: 16px;
+    }
+    input:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+    }
+    .filter-box {
+      position: relative;
+      display: inline-block;
+      margin-right: 15px;
+    }
+    .filter-close {
+      position: absolute;
+      padding: 0 5px;
+      top: -8px;
+      right: -15px;
+      cursor: pointer;
+      color: rgb(28, 189, 238);
+    }
+    .filter-close:hover {
+      color: #f00;
+    }
+    .rule-wrapper {
+      position: relative;
+      padding-right: 20px;
+    }
+    .icon-success,
+    .icon-error {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      margin-top: -8px;
+      width: 16px;
+      height: 16px;
+    }
+    .icon-success {
+      background: url(../images/success.png) no-repeat;
+    }
+    .icon-error {
+      background: url(../images/error.png) no-repeat;
+    }
+  </style>
+</head>
+<body>
+  <form action="">
+    <table class="config-table">
+      <tr>
+        <th colspan="2">Page Config</th>
+      </tr>
+      <tr>
+        <td>listen: </td>
+        <td>
+          <input type="radio" name="listen" value="true">on
+          <input type="radio" name="listen" value="false">off
+        </td>
+      </tr>
+      <tr>
+        <td>show: </td>
+        <td>
+          <input type="radio" name="show" value="true">on
+          <input type="radio" name="show" value="false">off
+        </td>
+      </tr>
+      <tr>
+        <td>rule: </td>
+        <td class="rule-wrapper">
+          <input type="text" name="rule">
+          <i class="icon-success"></i>
+        </td>
+      </tr>
+      <tr>
+        <td>filter: </td>
+        <td class="a-filter-text">
+          none
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="button" class="a-filter-btn" value="addfilter">
+        </td>
+        <td>
+          <input type="text" name="a-filter-input">
+        </td>
+      </tr>
+      <tr class="last-child">
+        <td colspan="2" align="center">
+          <input type="reset" value="重置">
+          <input type="button" class="submit" value="保存">
+        </td>
+      </tr>
+    </table>
+  </form>
+  <script src="../js/popup.js"></script>
+</body>
+</html>
