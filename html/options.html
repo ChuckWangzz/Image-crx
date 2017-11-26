@@ -7,8 +7,11 @@
     * {
       font-size: 16px;
     }
-    th {
-      padding: 10px 0;
+    body {
+      padding-bottom: 20px;
+    }
+    td {
+      padding: 5px 0;
     }
     .config-table {
       width: 200px;
@@ -33,7 +36,7 @@
     .filter-close:hover {
       color: #f00;
     }
-    .rule-wrapper {
+    .type-wrapper {
       position: relative;
       padding-right: 20px;
     }
@@ -55,54 +58,72 @@
   </style>
 </head>
 <body>
-  <form action="">
-    <table class="config-table">
-      <tr>
-        <th colspan="2">Page Config</th>
-      </tr>
-      <tr>
-        <td>listen: </td>
-        <td>
-          <input type="radio" name="listen" value="true">on
-          <input type="radio" name="listen" value="false">off
-        </td>
-      </tr>
-      <tr>
-        <td>show: </td>
-        <td>
-          <input type="radio" name="show" value="true">on
-          <input type="radio" name="show" value="false">off
-        </td>
-      </tr>
-      <tr>
-        <td>rule: </td>
-        <td class="rule-wrapper">
-          <input type="text" name="rule">
-          <i class="icon-success"></i>
-        </td>
-      </tr>
-      <tr>
-        <td>filter: </td>
-        <td class="a-filter-text">
-          none
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <input type="button" class="a-filter-btn" value="addfilter">
-        </td>
-        <td>
-          <input type="text" name="a-filter-input">
-        </td>
-      </tr>
-      <tr class="last-child">
-        <td colspan="2" align="center">
-          <input type="reset" value="重置">
-          <input type="button" class="submit" value="保存">
-        </td>
-      </tr>
-    </table>
-  </form>
-  <script src="../js/popup.js"></script>
+  <table class="config-table" align="center">
+    <tr>
+      <th colspan="2">Plugin Config</th>
+    </tr>
+    <tr>
+      <td>listen: </td>
+      <td>
+        <input type="radio" name="listen" value="true">on
+        <input type="radio" name="listen" value="false">off
+      </td>
+    </tr>
+    <tr>
+      <td>show: </td>
+      <td>
+        <input type="radio" name="show" value="true">on
+        <input type="radio" name="show" value="false">off
+      </td>
+    </tr>
+    <tr>
+      <td>types: </td>
+      <td class="a-type-text">
+        all
+      </td>
+    </tr>
+    <tr>
+      <td><input type="button" class="a-type-btn" value="addtype"> </td>
+      <td class="type-wrapper">
+        <input type="text" name="a-type-input">
+        <i class="icon-success"></i>
+      </td>
+    </tr>
+    <tr>
+      <td>urls: </td>
+      <td class="a-urls-text">
+        all
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input type="button" class="a-urls-btn" value="addurls">
+      </td>
+      <td>
+        <input type="text" name="a-urls-input">
+      </td>
+    </tr>
+    <tr>
+      <td>filter: </td>
+      <td class="a-filter-text">
+        none
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input type="button" class="a-filter-btn" value="addfilter">
+      </td>
+      <td>
+        <input type="text" name="a-filter-input">
+      </td>
+    </tr>
+    <tr class="last-child">
+      <td colspan="2" align="center">
+        <input type="reset" class="reset" value="重置">
+        <input type="button" class="submit" value="保存">
+      </td>
+    </tr>
+  </table>
+  <script src="../js/options.js"></script>
 </body>
 </html>

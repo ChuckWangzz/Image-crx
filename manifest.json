@@ -21,7 +21,7 @@
   "browser_action": {
     "default_icon": "images/wolf_48.png",
     "default_title": "图片监听插件",
-    "default_popup": "html/popup.html"
+    "default_popup": "html/options.html"
   },
   // 需要直接注入页面的js
   "content_scripts": [
