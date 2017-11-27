@@ -80,6 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if(inputValue) {
           if(this.option.type.indexOf(inputValue) == -1) {
             this.option.type.push(inputValue);
+            this.elATypeInput.value = '';
             this.initATypeText();
           }
         }
@@ -95,6 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if(inputValue) {
           if(this.option.filter.indexOf(inputValue) == -1) {
             this.option.filter.push(inputValue);
+            this.elAFilterInput.value = '';
             this.initAfilterText();
           }
         }
@@ -110,6 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if(inputValue) {
           if(this.option.urls.indexOf(inputValue) == -1) {
             this.option.urls.push(inputValue);
+            this.elAUrlsInput.value = '';
             this.initAUrlsText();
           }
         }

@@ -30,7 +30,6 @@ chrome.storage.sync.get({imgLisOp: {}}, (_storage) => {
   });
   config.type.forEach((_type) => {
     if (Catag.types.indexOf(_type) >= 0 ) {
-      console.log(_type)
       if(sReg === '') {
         sReg += Catag[_type].join('|');
       }else {
