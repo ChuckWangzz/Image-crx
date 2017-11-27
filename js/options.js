@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
       this.elAfilterText.addEventListener('click', (e) => {
         if(e.target.className.indexOf('filter-close') >= 0) {
           this.option.filter.splice(this.option.filter.indexOf(e.target.parentNode.childNodes[0].innerHTML), 1);
-          this.initAUrlsText();
+          this.initAfilterText();
         }
       }, false);
       this.elAUrlsBtn.addEventListener('click', () => {

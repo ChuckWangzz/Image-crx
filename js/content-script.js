@@ -3,9 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
   class ElImLisBox {
     constructor(_option) {
       let option = {
+        listen: true,
         show: true,
-        flag: true
+        type: [],
+        filter: [],
+        urls: []
       };
+      this.flag = true;
       this.state = false;
       this.option = Object.assign(option, _option);
       this.successIcon = '<svg class="img-listener-icon" viewbox="0 0 1024 1024"><path class="path" d="M512 1024a512 512 0 1 1 512-512 512 512 0 0 1-512 512z m292.266667-697.130667a42.666667 42.666667 0 0 0-60.330667 0L421.12 649.685333l-153.92-153.898666a43.242667 43.242667 0 1 0-60.330667 60.330666l179.370667 179.370667a46.933333 46.933333 0 0 0 65.749333 5.418667 35.285333 35.285333 0 0 0 5.290667-6.72L804.266667 387.2a42.666667 42.666667 0 0 0 0-60.330667z" p-id="8165" fill="#3bac27"></path></svg>';
@@ -26,14 +30,14 @@ document.addEventListener('DOMContentLoaded', () => {
       this.initEvent();
     }
     initDisplay() {
-      if (this.option.show) {
+      if (this.option.show.toString() === 'true') {
         this.elImLisBox.style.display = 'block';
       } else {
         this.elImLisBox.style.display = 'none';
       }
     }
     initIcon() {
-      if (this.option.flag) {
+      if (this.flag) {
         this.elSvgWrap.innerHTML = this.successIcon;
       } else {
         this.elSvgWrap.innerHTML = this.warnIcon;
@@ -53,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     addItem(_liop) {
       let elLi = document.createElement('li');
       elLi.innerHTML = `<a href="${_liop.url}" target="_blank">
-                          <img src="${_liop.url}" />
+                          <div class="img" style="background-image: url(${_liop.url});"></div>
                           <div class="text-wrap">
                             ${_liop.url}
                           </div>
@@ -62,14 +66,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   elImLisBox = new ElImLisBox();
-  elImLisBox.init();
   let num = 0;
-  //接受background&popup传递过来的信息
-  chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-      if (request.from === 'background') {
-          console.log(num++);
-          elImLisBox.addItem(request.details);
-      }
-    sendResponse('content-scirpt get message success');
+
+  chrome.storage.sync.get({imgLisOp: {}}, (_storage) => {
+    Object.assign(elImLisBox.option, _storage.imgLisOp);
+    elImLisBox.init();
+     //接受background&popup传递过来的信息
+      chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+        if (request.from === 'background') {
+            elImLisBox.addItem(request.details);
+            elImLisBox.flag = false;
+            elImLisBox.initIcon();
+        }
+      sendResponse('content-scirpt get message success');
+    });
   });
 });

@@ -60,10 +60,12 @@
   display: -webkit-flex;
   display: flex;
 }
-.img-listener-box .img-listener-content img {
+.img-listener-box .img-listener-content .img {
   width: 40px;
   height: 40px;
   margin-right:10px;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .img-listener-box .img-listener-content .text-wrap {
   -webkit-box-flex: 1;
