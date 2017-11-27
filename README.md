@@ -1,5 +1,5 @@
 # Image-crx
-a image link inspect extension
+检测资源是否带有@.+后缀，主要运用于检测图片是否进行裁剪过
 
 ## config
 - listen: 是否进行监听
