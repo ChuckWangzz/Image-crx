@@ -4,19 +4,17 @@ document.addEventListener('DOMContentLoaded', () => {
       let option = {
         listen: true,
         show: true,
-        type: [],
+        hosts: [],
         filter: [],
         urls: []
       }
       this.option = Object.assign(option, _option);
       this.typeFlag = true;
-      this.aTypeLetter = ['stylesheet', 'script', 'image'];
       this.elListens = document.querySelectorAll('input[name="listen"]');
       this.elShows = document.querySelectorAll('input[name="show"]');
-      this.elTypeIcon = document.querySelector('.type-wrapper i');
-      this.elATypeInput = document.querySelector('input[name="a-type-input"]');
-      this.elATypeBtn = document.querySelector('.a-type-btn');
-      this.elATypeText = document.querySelector('.a-type-text');
+      this.elAHostsInput = document.querySelector('input[name="a-hosts-input"]');
+      this.elAHostsBtn = document.querySelector('.a-hosts-btn');
+      this.elAHostsText = document.querySelector('.a-hosts-text');
       this.elAFilterInput = document.querySelector('input[name="a-filter-input"]');
       this.elAFilterBtn = document.querySelector('.a-filter-btn');
       this.elAfilterText = document.querySelector('.a-filter-text');
@@ -29,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     init() {
       this.initListen();
       this.initShow();
-      this.initATypeText();
+      this.initAHostsText();
       this.initAfilterText();
       this.initAUrlsText();
       this.initEvent();
@@ -44,14 +42,14 @@ document.addEventListener('DOMContentLoaded', () => {
         _el.value == this.option.show.toString()?_el.checked='true':_el.checked='';
       });
     }
-    initATypeText() {
-      if(this.option.type.length > 0) {
-        this.elATypeText.innerHTML = '';
-        this.option.type.forEach((item) => {
-          this.elATypeText.innerHTML += `<span class="filter-box"><span class="filter-text">${item}</span><span class="filter-close">x</span></span>`;
+    initAHostsText() {
+      if(this.option.hosts.length > 0) {
+        this.elAHostsText.innerHTML = '';
+        this.option.hosts.forEach((item) => {
+          this.elAHostsText.innerHTML += `<span class="filter-box"><span class="filter-text">${item}</span><span class="filter-close">x</span></span>`;
         });
       }else {
-        this.elATypeText.innerHTML = 'all';
+        this.elAHostsText.innerHTML = 'all';
       }
     }
     initAfilterText() {
@@ -75,20 +73,20 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
     initEvent() {
-      this.elATypeBtn.addEventListener('click', () => {
-        let inputValue = this.elATypeInput.value.replace(/\s*/g, '');
+      this.elAHostsBtn.addEventListener('click', () => {
+        let inputValue = this.elAHostsInput.value.replace(/\s*/g, '');
         if(inputValue) {
-          if(this.option.type.indexOf(inputValue) == -1) {
-            this.option.type.push(inputValue);
-            this.elATypeInput.value = '';
-            this.initATypeText();
+          if(this.option.hosts.indexOf(inputValue) == -1) {
+            this.option.hosts.push(inputValue);
+            this.elAHostsInput.value = '';
+            this.initAHostsText();
           }
         }
       }, false);
-      this.elATypeText.addEventListener('click', (e) => {
+      this.elAHostsText.addEventListener('click', (e) => {
         if(e.target.className.indexOf('filter-close') >= 0) {
-          this.option.type.splice(this.option.type.indexOf(e.target.parentNode.childNodes[0].innerHTML), 1);
-          this.initATypeText();
+          this.option.hosts.splice(this.option.hosts.indexOf(e.target.parentNode.childNodes[0].innerHTML), 1);
+          this.initAHostsText();
         }
       }, false);
       this.elAFilterBtn.addEventListener('click', () => {
@@ -123,15 +121,6 @@ document.addEventListener('DOMContentLoaded', () => {
           this.initAUrlsText();
         }
       }, false);
-      this.elATypeInput.addEventListener('keyup', () => {
-        if(this.verifyType(this.elATypeInput.value)) {
-          this.elTypeIcon.className = 'icon-success';
-          this.typeFlag = true;
-        }else {
-          this.elTypeIcon.className = 'icon-error';
-          this.typeFlag = false;
-        }
-      });
       this.elSubmit.addEventListener('click', () => {
         if(this.typeFlag) {
           this.elListens.forEach((_el) => {
@@ -151,20 +140,17 @@ document.addEventListener('DOMContentLoaded', () => {
           let defaultOption = {
             listen: true,
             show: true,
-            type: [],
+            hosts: [],
             filter: [],
             urls: []
           };
           Object.assign(this.option, defaultOption, _storage.imgLisOp);
           this.initListen();
           this.initShow();
-          this.initATypeText();
+          this.initAHostsText();
           this.initAfilterText();
         });
       });
-    }
-    verifyType(_input) {
-      return this.aTypeLetter.indexOf(_input)>=0?true:false;
     }
   }
 

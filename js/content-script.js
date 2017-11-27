@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let option = {
         listen: true,
         show: true,
-        type: [],
+        hosts: [],
         filter: [],
         urls: []
       };
@@ -74,11 +74,15 @@ document.addEventListener('DOMContentLoaded', () => {
      //接受background&popup传递过来的信息
       chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         if (request.from === 'background') {
+            // console.log(num++);
             elImLisBox.addItem(request.details);
             elImLisBox.flag = false;
             elImLisBox.initIcon();
         }
       sendResponse('content-scirpt get message success');
     });
+  });
+  chrome.runtime.sendMessage({origin: window.location.origin, from: 'content-script'}, (response) => {
+
   });
 });
