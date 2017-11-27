@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       this.option = Object.assign(option, _option);
       this.typeFlag = true;
-      this.aTypeLetter = ['main_frame', 'sub_frame', 'stylesheet', 'script', 'image', 'font', 'object', 'xmlhttprequest', 'ping', 'csp_report', 'media', 'websocket', 'other'];
+      this.aTypeLetter = ['stylesheet', 'script', 'image'];
       this.elListens = document.querySelectorAll('input[name="listen"]');
       this.elShows = document.querySelectorAll('input[name="show"]');
       this.elTypeIcon = document.querySelector('.type-wrapper i');
